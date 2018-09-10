@@ -3,6 +3,7 @@ package br.ufpe.cin.if710.rss
 import android.app.Activity
 import android.os.Bundle
 import android.widget.TextView
+import br.ufpe.cin.if710.rss.ParserRSS.parse
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -36,9 +37,9 @@ class MainActivity : Activity() {
         super.onStart()
         try {
             doAsync {
-                val feedXML = getRssFeed(RSS_FEED)
+                val feedXML = parse(getRssFeed(RSS_FEED))
                 uiThread {
-                    conteudoRSS!!.text = feedXML
+                    conteudoRSS!!.text = feedXML.toString()
                 }
             }
         } catch (e: IOException) {
