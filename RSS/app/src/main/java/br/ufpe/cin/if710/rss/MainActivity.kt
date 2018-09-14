@@ -47,7 +47,7 @@ class MainActivity : Activity() {
         try {
             doAsync {
                 val feedXML = parse(getRssFeed(RSS_FEED))
-                val adapter = RecyclerAdapter(feedXML)
+                val adapter = RecyclerCustomAdapter(feedXML)
                 uiThread {
                     conteudoRSS!!.adapter = adapter
                 }

@@ -12,9 +12,9 @@ class RecyclerAdapter(private val items: List<ItemRSS>) : RecyclerView.Adapter<R
     class MyViewHolder(val view: LinearLayout) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.MyViewHolder {
-        val textView = LayoutInflater.from(parent.context)
+        val linearLayout = LayoutInflater.from(parent.context)
                 .inflate(R.layout.itemlista, parent, false)  as LinearLayout
-        return MyViewHolder(textView)
+        return MyViewHolder(linearLayout)
     }
 
     override fun getItemCount(): Int {
