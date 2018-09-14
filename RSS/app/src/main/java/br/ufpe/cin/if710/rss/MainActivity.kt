@@ -20,7 +20,7 @@ import java.net.URL
 class MainActivity : Activity() {
 
     //ao fazer envio da resolucao, use este link no seu codigo!
-    private val RSS_FEED = "http://pox.globo.com/rss/g1/tecnologia/"
+    private var RSS_FEED: String? = null
 
     //OUTROS LINKS PARA TESTAR...
     //http://rss.cnn.com/rss/edition.rss
@@ -36,6 +36,8 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        RSS_FEED = getString(R.string.rssfeed)
         conteudoRSS = findViewById(R.id.conteudoRSS)
 
         linearLayoutManager = LinearLayoutManager(this)
@@ -46,7 +48,7 @@ class MainActivity : Activity() {
         super.onStart()
         try {
             doAsync {
-                val feedXML = parse(getRssFeed(RSS_FEED))
+                val feedXML = parse(getRssFeed(RSS_FEED!!))
                 val adapter = RecyclerCustomAdapter(feedXML)
                 uiThread {
                     conteudoRSS!!.adapter = adapter
