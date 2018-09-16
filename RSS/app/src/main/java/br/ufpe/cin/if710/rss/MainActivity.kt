@@ -2,14 +2,11 @@ package br.ufpe.cin.if710.rss
 
 import android.app.Activity
 import android.os.Bundle
-import android.os.Debug
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.TextView
 import br.ufpe.cin.if710.rss.ParserRSS.parse
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
@@ -37,21 +34,21 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        RSS_FEED = getString(R.string.rssfeed)
+        RSS_FEED = getString(R.string.rssfeed) //url vem do arquivo de strings
         conteudoRSS = findViewById(R.id.conteudoRSS)
 
         linearLayoutManager = LinearLayoutManager(this)
-        conteudoRSS?.layoutManager = linearLayoutManager
+        conteudoRSS?.layoutManager = linearLayoutManager //tipo de layout que será colocado o conteúdo do recycler
     }
 
     override fun onStart() {
         super.onStart()
         try {
             doAsync {
-                val feedXML = parse(getRssFeed(RSS_FEED!!))
-                val adapter = RecyclerCustomAdapter(feedXML)
+                val feedXML = parse(getRssFeed(RSS_FEED!!)) //RSS passando pelo parser, retorno é uma lista de ItemRSS
+                val adapter = RecyclerCustomAdapter(feedXML) //personalizado para mostrar titulo e data
                 uiThread {
-                    conteudoRSS!!.adapter = adapter
+                    conteudoRSS!!.adapter = adapter //colocando o conteudo de fato na view (ja que mexe em ui deve ser feito na thread principal)
                 }
             }
         } catch (e: IOException) {

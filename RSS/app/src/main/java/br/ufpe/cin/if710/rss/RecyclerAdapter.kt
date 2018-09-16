@@ -2,12 +2,11 @@ package br.ufpe.cin.if710.rss
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import org.jetbrains.anko.textView
 
+//primeiro adaptador pedido
 class RecyclerAdapter(private val items: List<ItemRSS>) : RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>()  {
     class MyViewHolder(val view: LinearLayout) : RecyclerView.ViewHolder(view)
 
